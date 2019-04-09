@@ -2,8 +2,8 @@
 Analysis for access-control vulnerabilities in Java Spring Security applications. 
 
 Copyright (c) 2019 Secure Software Engineering Group at Paderborn University and Fraunhofer IEM
-http://www.hni.uni-paderborn.de/swt
-https://www.iem.fraunhofer.de/
+* http://www.hni.uni-paderborn.de/swt
+* https://www.iem.fraunhofer.de/
 
 # contributors
 * Tobias Petrasch
