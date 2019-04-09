@@ -5,7 +5,7 @@ Copyright (c) 2019 Secure Software Engineering Group at Paderborn University and
 * http://www.hni.uni-paderborn.de/swt
 * https://www.iem.fraunhofer.de/
 
-# contributors
+## contributors
 * Tobias Petrasch
 * Goran Piskachev 
 * Johannes Späth
@@ -39,6 +39,7 @@ With the following command the log files can be viewed:
 
 The generated HTML report (report.html) is stored in the directory ```../docker/output/testcases```.
 
+## MacOS and Linux
 To run authcheck on MacOS or Linux, configuration file has to be adapted. There are example configurations in the folder configuration. Among them are configuration default.json and configuration testcases.json. 
 The attributes jceJarPath and rtJarPath must be adapted to the Java Home path. The following command can then be executed to execute authcheck:
 ```$ java -jar target/Checker-1.0-SNAPSHOT-jar-withdependencies.jar configuration/configuration default.json```
