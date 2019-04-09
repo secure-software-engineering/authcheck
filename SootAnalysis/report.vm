@@ -1,0 +1,161 @@
+#* @vtlvariable name="analysisResult" type="de.tobiaspetrasch.checker.analysis.CweResult" *#
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=callGraphEdgeEntity,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properties -->
+  <title>Html Report - CWE Analysis</title>
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="semantic/dist/semantic.min.js"></script>
+  <style>
+  html, body {
+    background-color: #e0e0e0;
+  }
+  
+  .vertical-timeline:after {
+    content:"";
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    bottom: 24px;
+    left: 17px;
+    border-left: 4px solid #dddddd;
+    transform: translate(-50%);
+  }
+
+  .feed {
+    position: relative;
+  }
+
+  .event > .label {
+    z-index: 2;
+  }
+
+  .paddedHeader > div > h5 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+  <div class="ui stackable grid container">
+    <div class="row" style="padding-top: 40px;">
+      <div class="column sixteen wide">
+        <div class="ui blue inverted segment">
+          <h3 class="ui header">
+            $headline
+          </h3>
+          <p>The analysis took <b>$time seconds</b>. It was started on <b>$start</b> and finished on <b>$finish</b>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row paddedHeader">
+      <div class="column eight wide">
+          <h5>
+            #foreach( $cwe in $analysisResult.getCheckedCwes() )
+            #set ($cweColor = "green")
+            #if ( $analysisResult.isCweViolated($cwe) )
+            #set ($cweColor = "red")
+            #end
+            <div class="ui $cweColor label">$cwe.getIdentifier()</div>
+            #end
+          </h5>
+      </div>
+      <div class="column eight wide">
+        <h5 style="float: right;">
+          #set ($successPathCount = $analysisResult.getPathCount() - $analysisResult.getVulnerablePathCount())
+          <div class="ui green circular label">$successPathCount</div> Success / 
+          <div class="ui red circular label">$analysisResult.getVulnerablePathCount()</div> Failed / 
+          <div class="ui blue circular label">$analysisResult.getPathCount()</div> Total
+        </h5>
+      </div>
+    </div>
+
+    #foreach( $result in $analysisResult.getResults() )
+    #set($resultStatus = "green")
+    #set($resultIcon = "check")
+    #if($result.isFailed())
+    #set($resultStatus = "red")
+    #set($resultIcon = "times")
+    #end
+    <div class="row">
+      <div class="column sixteen wide">
+        <div class="ui $resultStatus inverted segment">
+          <i class="icon $resultIcon"></i>Path from <b>$result.getPathStart().replace('<init>', 'constructor')</b> to <b>$result.getPathEnd().replace('<init>', 'constructor')</b>
+        </div>
+      </div>
+      <div class="column sixteen wide">
+        <div class="ui two column grid container segment">
+          #foreach( $path in $result.getPaths() )
+          <div class="column">
+            <h3 class="ui header">$path.getCweIdentifier()</h3>
+          </div>
+          <div class="column">
+          </div>
+
+          <div class="column">
+            <h5 class="ui header">
+              Path
+            </h5>
+            <div class="ui feed vertical-timeline">
+              #foreach( $callGraphNodeEntity in $path.getCallGraphPath() )
+              #set( $pathColor = "green" )
+              #set( $pathIcon = "check circle" )
+
+              #if( $path.isFailed() && $foreach.count == $path.getPathFailedIndex() + 1 )
+              #set($pathColor = "red")
+              #set( $pathIcon = "exclamation circle" )    
+              #end
+
+              #if( $path.isFailed() && $foreach.count > $path.getPathFailedIndex() + 1 )
+              #set($pathColor = "grey")
+              #set( $pathIcon = "times circle" )
+              #end
+              <div class="event">
+                <div class="label">
+                  <i class="$pathIcon icon $pathColor"></i>
+                </div>
+                <div class="content">
+                  <div class="date">$callGraphNodeEntity.getType()</div>
+                  <div class="summary">$callGraphNodeEntity.getMethodName().replace('<init>', 'constructor')</div>
+                </div>
+              </div>
+              #end
+            </div>
+          </div>
+          <div class="column">
+            <h5 class="ui header">
+              Description
+            </h5>
+            <p>
+              #if ( $path.isFailed() )
+              $path.getErrorMessage()
+              #else
+              Nothing failed in this path.
+              #end
+            </p>
+            #if ( $path.isFailed() )
+            <h5 class="ui header">
+              How to fix?
+            </h5>
+            <p>
+              $path.getFixMessage()
+            </p>
+            #end
+          </div>
+          #end
+        </div>
+      </div>
+    </div>
+    #end
+  </div>
+</body>
+</html>

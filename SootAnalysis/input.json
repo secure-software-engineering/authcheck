@@ -1,0 +1,32 @@
+{
+  "authorizationGroups": [
+    "USER",
+    "ADMIN"
+  ],
+  "criticalMethods": [
+    {
+      "methodSignature": "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>",
+      "authorizationExpression" : "hasRole('ADMIN')"
+    },
+    {
+      "methodSignature": "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo update(java.lang.Long,java.lang.String)>",
+      "authorizationExpression" : "hasRole('ADMIN')"
+    },
+    {
+      "methodSignature": "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo create(java.lang.String)>",
+      "authorizationExpression" : "hasRole('ADMIN')"
+    },
+    {
+      "methodSignature": "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo retrieve(java.lang.Long)>",
+      "authorizationExpression" : "hasAnyRole('USER','ADMIN')"
+    },
+    {
+      "methodSignature": "<com.example.demo.controller.TodoController: java.util.ArrayList retrieveAll()>",
+      "authorizationExpression" : "hasRole('USER') or hasRole('ADMIN')"
+    },
+    {
+      "methodSignature": "<com.example.demo.controller.UserController: com.example.demo.entity.User profile()>",
+      "authorizationExpression" : null
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+    checker:
+        build:
+            context: .
+        volumes:
+            - "./docker/output:/opt/checker/report"
+            - "./configurationDocker.json:/opt/checker/configuration.json"
+            - "./input.json:/opt/checker/input.json"
+            - "./report.vm:/opt/checker/report.vm"
+            - "/Users/tobiaspetrasch/git/university/bachelor-thesis-tobias-petrasch/02_Implementation/Spring_Examples/demo/target:/opt/checker/target_app"

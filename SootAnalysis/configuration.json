@@ -1,0 +1,17 @@
+{
+  "inputModelPath" : "./input.json",
+  "programDirectory" : "../Spring_Examples/demo/target/classes",
+  "applicationPackage" : "com.example.demo",
+  "controllerPackage" : "com.example.demo.controller",
+  "jceJarPath" : "/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/jre/lib/jce.jar",
+  "rtJarPath" : "/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/jre/lib/rt.jar",
+  "mainClass" : "com.example.demo.DemoApplication",
+  "configurationClass" : "com.example.demo.security.WebSecurityConfig",
+  "configurationMethod" : "configure",
+  "sootAlgorithm" : "CHA",
+  "controllerClasses": [
+    "com.example.demo.controller.TodoController",
+    "com.example.demo.controller.UserController",
+    "com.example.demo.controller.MetaController"
+  ]
+}

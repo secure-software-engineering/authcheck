@@ -1,0 +1,194 @@
+digraph "call-graph" {
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo findWithId(long)>
+UNKNOWN" [fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,];
+    "<com.example.demo.entity.Todo: long getId()>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo findWithId(long)>
+UNKNOWN"->"<com.example.demo.entity.Todo: long getId()>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: java.util.ArrayList retrieveAll()>
+CRITICAL_AUTHORIZATION
+hasRole('USER') or hasRole('ADMIN')" [fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,];
+    "<com.example.demo.service.TodoService: void <init>()>
+UNKNOWN" [fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,];
+    "<com.example.demo.controller.TodoController: java.util.ArrayList retrieveAll()>
+CRITICAL_AUTHORIZATION
+hasRole('USER') or hasRole('ADMIN')"->"<com.example.demo.service.TodoService: void <init>()>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo retrieve(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasAnyRole('USER','ADMIN')" [fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,];
+    "<com.example.demo.controller.TodoController: void <init>()>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo retrieve(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasAnyRole('USER','ADMIN')"->"<com.example.demo.controller.TodoController: void <init>()>
+UNKNOWN";
+    "<com.example.demo.exception.TodoNotFoundException: void <init>(long)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo findWithId(long)>
+UNKNOWN"->"<com.example.demo.exception.TodoNotFoundException: void <init>(long)>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')" [fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,];
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo retrieve(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasAnyRole('USER','ADMIN')"->"<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo update(java.lang.Long,java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')" [fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,];
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo update(java.lang.Long,java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: void <init>()>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo create(java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')" [fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,fillcolor=red,style=filled,];
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo buildEntityFromJSONString(java.lang.String)>
+UNKNOWN" [fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,];
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo create(java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: com.example.demo.entity.Todo buildEntityFromJSONString(java.lang.String)>
+UNKNOWN";
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo update(com.example.demo.entity.Todo,java.lang.String)>
+UNKNOWN" [fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,];
+    "<com.example.demo.exception.TodoValidationFailedException: void <init>()>
+UNKNOWN" [fillcolor=white,style=filled,fillcolor=white,style=filled,];
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo update(com.example.demo.entity.Todo,java.lang.String)>
+UNKNOWN"->"<com.example.demo.exception.TodoValidationFailedException: void <init>()>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo update(java.lang.Long,java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: com.example.demo.entity.Todo update(com.example.demo.entity.Todo,java.lang.String)>
+UNKNOWN";
+    "<com.example.demo.entity.Todo: void setContent(java.lang.String)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo update(com.example.demo.entity.Todo,java.lang.String)>
+UNKNOWN"->"<com.example.demo.entity.Todo: void setContent(java.lang.String)>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo create(java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: void <init>()>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: com.example.demo.entity.Todo findWithId(long)>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: void <init>()>
+UNKNOWN";
+    "<com.example.demo.entity.Todo: void <init>(long,java.lang.String)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo buildEntityFromJSONString(java.lang.String)>
+UNKNOWN"->"<com.example.demo.entity.Todo: void <init>(long,java.lang.String)>
+UNKNOWN";
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo buildEntityFromJSONString(java.lang.String)>
+UNKNOWN"->"<com.example.demo.exception.TodoValidationFailedException: void <init>()>
+UNKNOWN";
+    "<com.example.demo.controller.UserController: com.example.demo.entity.User profile()>
+CRITICAL_AUTHENTICATION" [fillcolor=orange,style=filled,fillcolor=orange,style=filled,fillcolor=orange,style=filled,];
+    "<com.example.demo.service.UserService: com.example.demo.entity.User getUser()>
+UNKNOWN" [fillcolor=white,style=filled,fillcolor=white,style=filled,fillcolor=white,style=filled,];
+    "<com.example.demo.controller.UserController: com.example.demo.entity.User profile()>
+CRITICAL_AUTHENTICATION"->"<com.example.demo.service.UserService: com.example.demo.entity.User getUser()>
+UNKNOWN";
+    "<com.example.demo.service.TodoService: java.util.ArrayList list()>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.controller.TodoController: java.util.ArrayList retrieveAll()>
+CRITICAL_AUTHORIZATION
+hasRole('USER') or hasRole('ADMIN')"->"<com.example.demo.service.TodoService: java.util.ArrayList list()>
+UNKNOWN";
+    "<com.example.demo.service.TodoService: void add(com.example.demo.entity.Todo)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo create(java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: void add(com.example.demo.entity.Todo)>
+UNKNOWN";
+    "<com.example.demo.controller.MetaController: com.example.demo.entity.Version version()>
+UNKNOWN" [fillcolor=white,style=filled,fillcolor=white,style=filled,];
+    "<com.example.demo.entity.Version: void <init>(java.lang.String)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.controller.MetaController: com.example.demo.entity.Version version()>
+UNKNOWN"->"<com.example.demo.entity.Version: void <init>(java.lang.String)>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo retrieve(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasAnyRole('USER','ADMIN')"->"<com.example.demo.service.TodoService: com.example.demo.entity.Todo findWithId(long)>
+UNKNOWN";
+    "<com.example.demo.service.UserService: void <init>()>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.controller.UserController: com.example.demo.entity.User profile()>
+CRITICAL_AUTHENTICATION"->"<com.example.demo.service.UserService: void <init>()>
+UNKNOWN";
+    "<com.example.demo.service.TodoService: void remove(com.example.demo.entity.Todo)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: void remove(com.example.demo.entity.Todo)>
+UNKNOWN";
+    "<com.example.demo.service.UserService: java.util.List convertAuthorities(java.util.Collection)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.service.UserService: com.example.demo.entity.User getUser()>
+UNKNOWN"->"<com.example.demo.service.UserService: java.util.List convertAuthorities(java.util.Collection)>
+UNKNOWN";
+    "<com.example.demo.service.TodoService: long getNextId()>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.service.TodoService: com.example.demo.entity.Todo buildEntityFromJSONString(java.lang.String)>
+UNKNOWN"->"<com.example.demo.service.TodoService: long getNextId()>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo retrieve(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasAnyRole('USER','ADMIN')"->"<com.example.demo.service.TodoService: void <init>()>
+UNKNOWN";
+    "<com.example.demo.entity.User: void <init>(java.lang.String,java.util.List)>
+UNKNOWN" [fillcolor=white,style=filled,];
+    "<com.example.demo.service.UserService: com.example.demo.entity.User getUser()>
+UNKNOWN"->"<com.example.demo.entity.User: void <init>(java.lang.String,java.util.List)>
+UNKNOWN";
+    "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo update(java.lang.Long,java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')"->"<com.example.demo.service.TodoService: com.example.demo.entity.Todo findWithId(long)>
+UNKNOWN";
+    "Spring.run
+INIT" [fillcolor=blue,style=filled,fillcolor=blue,style=filled,];
+    "authenticate
+AUTHENTICATE" [fillcolor=green,style=filled,fillcolor=green,style=filled,fillcolor=green,style=filled,];
+    "Spring.run
+INIT"->"authenticate
+AUTHENTICATE";
+    "authorize
+AUTHORIZE" [fillcolor=green,style=filled,fillcolor=green,style=filled,fillcolor=green,style=filled,fillcolor=green,style=filled,fillcolor=green,style=filled,fillcolor=green,style=filled,];
+    "authenticate
+AUTHENTICATE"->"authorize
+AUTHORIZE";
+    "authorize
+AUTHORIZE"->"<com.example.demo.controller.TodoController: com.example.demo.entity.Todo retrieve(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasAnyRole('USER','ADMIN')" [label="hasRole('USER') or hasRole('ADMIN')",];
+    "authorize
+AUTHORIZE"->"<com.example.demo.controller.TodoController: java.util.ArrayList retrieveAll()>
+CRITICAL_AUTHORIZATION
+hasRole('USER') or hasRole('ADMIN')" [label="hasAnyRole('USER', 'ADMIN')",];
+    "authorize
+AUTHORIZE"->"<com.example.demo.controller.TodoController: com.example.demo.entity.Todo create(java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')" [label="hasRole('ADMIN')",];
+    "authorize
+AUTHORIZE"->"<com.example.demo.controller.TodoController: com.example.demo.entity.Todo update(java.lang.Long,java.lang.String)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')" [label="hasRole('ADMIN')",];
+    "authorize
+AUTHORIZE"->"<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>
+CRITICAL_AUTHORIZATION
+hasRole('ADMIN')" [label="hasRole('ADMIN')",];
+    "authenticate
+AUTHENTICATE"->"<com.example.demo.controller.UserController: com.example.demo.entity.User profile()>
+CRITICAL_AUTHENTICATION";
+    "Spring.run
+INIT"->"<com.example.demo.controller.MetaController: com.example.demo.entity.Version version()>
+UNKNOWN";
+}
