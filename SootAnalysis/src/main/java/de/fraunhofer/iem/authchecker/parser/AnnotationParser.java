@@ -23,8 +23,18 @@ public class AnnotationParser {
 
   protected static final Logger LOGGER = LoggerUtil.getLogger();
 
-  private static final String ANNOTATION_TYPE = "Lorg/springframework/web/bind/annotation/RequestMapping;";
-
+  private static final String HTTP_METHOD_GET = "GET"; 
+  private static final String HTTP_METHOD_PUT = "PUT"; 
+  private static final String HTTP_METHOD_POST = "POST"; 
+  private static final String HTTP_METHOD_DELETE = "DELETE"; 
+    
+  private static final String ANNOTATION_TYPE_REQUESTMAPPING = "Lorg/springframework/web/bind/annotation/RequestMapping;";
+  private static final String ANNOTATION_TYPE_GETMAPPING  = "Lorg/springframework/web/bind/annotation/GetMapping;";
+  private static final String ANNOTATION_TYPE_POSTMAPPING  = "Lorg/springframework/web/bind/annotation/PostMapping;";
+  private static final String ANNOTATION_TYPE_PUTMAPPING  = "Lorg/springframework/web/bind/annotation/PutMapping;";
+  private static final String ANNOTATION_TYPE_DELETEMAPPING  = "Lorg/springframework/web/bind/annotation/DeleteMapping;";
+   
+  
   private ArrayList<AnnotationEntity> annotations = new ArrayList<AnnotationEntity>();
 
   public void parseAnnotation(SootMethod method, List<Tag> classAnnotations) {
@@ -36,36 +46,57 @@ public class AnnotationParser {
     for (Tag tag : method.getTags()) {
       if (tag instanceof VisibilityAnnotationTag) {
         VisibilityAnnotationTag vat = (VisibilityAnnotationTag) tag;
-        for (AnnotationTag annotation : vat.getAnnotations()) {
-          // check if we found the right annotation
-          if (annotation.getType().equals(ANNOTATION_TYPE)) {
-            extractAnnotation(annotationEntity, annotation, classAnnotations);
+        for (AnnotationTag annoTag : vat.getAnnotations()) {
+          if (parseAnnotationTag(annotationEntity, annoTag, classAnnotations)) {
             // we only add the annotation if the parsing was successful
             LOGGER.info("Added annotation " + annotationEntity);
             this.annotations.add(annotationEntity);
-          }
+          }          
         }
       }
     }
   }
 
-  private void extractAnnotation(AnnotationEntity annotationEntity,
-      AnnotationTag annotation, List<Tag> classAnnotations) {
-    for (AnnotationElem annotationElement : annotation.getElems()) {
-      if (annotationElement instanceof AnnotationArrayElem) {
-        switch (annotationElement.getName()) {
-          case "value":
-            annotationEntity
-                .setPattern(this.extractClassPrefix(classAnnotations) +
-                    this.extractPattern(annotationElement));
-            break;
-          case "method":
-            annotationEntity
-                .setHttpMethod(this.extractHttpMethod(annotationElement));
-            break;
-        }
-      }
-    }
+  private boolean parseAnnotationTag(AnnotationEntity annoEntity,
+		  AnnotationTag annoTag, List<Tag> classAnnots) {
+	  switch(annoTag.getType()) {
+	  	case ANNOTATION_TYPE_GETMAPPING: 
+	  		annoEntity.setHttpMethod(HTTP_METHOD_GET);
+	  		break;
+	  	case ANNOTATION_TYPE_POSTMAPPING:
+	  		annoEntity.setHttpMethod(HTTP_METHOD_POST);
+	  		break;
+	  	case ANNOTATION_TYPE_PUTMAPPING: 
+	  		annoEntity.setHttpMethod(HTTP_METHOD_PUT);
+	  		break;	  		
+	  	case ANNOTATION_TYPE_DELETEMAPPING: 
+	  		annoEntity.setHttpMethod(HTTP_METHOD_DELETE);
+	  		break;
+	  	case ANNOTATION_TYPE_REQUESTMAPPING: 
+	  		break;
+	  	default: return false;
+	  }
+	  extractAnnotation(annoEntity, annoTag, classAnnots);
+	  return true;
+  }
+  
+  private void extractAnnotation(AnnotationEntity annoEntity,
+		  AnnotationTag annoTag, List<Tag> classAnnots) {
+	  for (AnnotationElem annotationElement : annoTag.getElems()) {
+	    if (annotationElement instanceof AnnotationArrayElem) {
+	      switch (annotationElement.getName()) {
+	        case "value":
+	        	annoEntity
+	              .setPattern(this.extractClassPrefix(classAnnots) +
+	                  this.extractPattern(annotationElement));
+	          break;
+	        case "method":
+	        	annoEntity
+		          .setHttpMethod(this.extractHttpMethod(annotationElement));
+	          break;
+	      }
+	    }
+	  }
   }
 
   private String extractClassPrefix(List<Tag> classAnnotations) {
@@ -73,16 +104,14 @@ public class AnnotationParser {
       if (tag instanceof VisibilityAnnotationTag) {
         VisibilityAnnotationTag vat = (VisibilityAnnotationTag) tag;
         for (AnnotationTag annotation : vat.getAnnotations()) {
-          if (annotation.getType().equals(ANNOTATION_TYPE)) {
-            for (AnnotationElem annotationElement : annotation.getElems()) {
-              if (annotationElement instanceof AnnotationArrayElem) {
-                switch (annotationElement.getName()) {
-                  case "value":
-                    return this.extractPattern(annotationElement);
-                }
-              }
-            }
-          }
+	      for (AnnotationElem annotationElement : annotation.getElems()) {
+	        if (annotationElement instanceof AnnotationArrayElem) {
+	          switch (annotationElement.getName()) {
+	            case "value":
+	              return this.extractPattern(annotationElement);
+	          }
+	        }
+	      }
         }
       }
     }
