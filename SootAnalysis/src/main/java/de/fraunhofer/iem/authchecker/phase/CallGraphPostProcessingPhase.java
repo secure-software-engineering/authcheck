@@ -82,12 +82,13 @@ public class CallGraphPostProcessingPhase extends Phase<CweConfiguration> {
       for (ConfigurationEntity patternAuthorization : this.getPatternAuthorizationEntities()) {
         for (String pattern : patternAuthorization.getPatterns()) {
           if (this.patternMatchingAlgorithm.matchPattern(pattern, annotation.getPattern())
-              && annotation.getHttpMethod().equals(patternAuthorization.getHttpMethod())) {
+              && ( (annotation.getHttpMethod() == null && patternAuthorization.getHttpMethod() == null) 
+            		  || (annotation.getHttpMethod().equals(patternAuthorization.getHttpMethod())))) {
             foundPattern = true;
             if (authExpression == null || authExpression.equals("")) {
               authExpression = patternAuthorization.getAuthorizationExpression();
             } else {
-              authExpression = " and " + patternAuthorization.getAuthorizationExpression();
+              authExpression += " and " + patternAuthorization.getAuthorizationExpression();
             }
           }
         }

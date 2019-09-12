@@ -12,6 +12,8 @@ import de.fraunhofer.iem.authchecker.analysis.CweConfiguration;
 import de.fraunhofer.iem.authchecker.artifact.Artifact;
 import de.fraunhofer.iem.authchecker.artifact.CallGraphArtifact;
 import de.fraunhofer.iem.authchecker.artifact.InputModelArtifact;
+import de.fraunhofer.iem.authchecker.entity.AnnotationEntity;
+import de.fraunhofer.iem.authchecker.entity.ConfigurationEntity;
 import de.fraunhofer.iem.authchecker.model.InputModel;
 import de.fraunhofer.iem.authchecker.parser.AnnotationParser;
 import de.fraunhofer.iem.authchecker.parser.ConfigurationParser;
@@ -27,14 +29,16 @@ import soot.options.Options;
 public class CallGraphConstructionPhase extends Phase<CweConfiguration> {
 
   private AnnotationParser annotationParser;
-
   private ConfigurationParser configurationParser;
 
   public CallGraphConstructionPhase(CweConfiguration config,
       Artifact... phaseArtifacts) {
     super(config, "callGraphConstruction", phaseArtifacts);
-    this.annotationParser = new AnnotationParser();
-    this.configurationParser = new ConfigurationParser();
+    
+    // Common data-structure for storing pattern entities. 
+    List<ConfigurationEntity> patterns = new ArrayList<ConfigurationEntity>(); 
+    this.annotationParser = new AnnotationParser(patterns);
+    this.configurationParser = new ConfigurationParser(patterns);
   }
 
   public void run() {
@@ -119,8 +123,9 @@ public class CallGraphConstructionPhase extends Phase<CweConfiguration> {
     //transfer results to artifacts
     CallGraphArtifact cgArtifact = this.getCallGraphArtifact();
     cgArtifact.setCallGraphModel(cgTrans.getCallGraphModel());
-    cgArtifact.setAnnotationEntities(annotationParser.getAnnotations());
+    cgArtifact.setAnnotationEntities(annotationParser.getAnnotations());   
     cgArtifact.setPatternAuthorizationEntities(configurationParser.getPatternEntities());
+  
   }
 
   private InputModel getInputModel() {

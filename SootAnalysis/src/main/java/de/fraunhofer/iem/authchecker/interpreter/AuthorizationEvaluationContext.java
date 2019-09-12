@@ -29,6 +29,14 @@ public class AuthorizationEvaluationContext {
     }
     return false;
   }
+  
+  public boolean hasAuthority(String role) {
+	  return hasRole(role);
+  }
+  
+  public boolean hasAnyAuthority(String... roles) {
+	  return hasAnyRole(roles);
+  }
 
   public boolean permitAll() {
     return true;

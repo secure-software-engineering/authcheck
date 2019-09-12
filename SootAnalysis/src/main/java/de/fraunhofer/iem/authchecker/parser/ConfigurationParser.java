@@ -3,13 +3,13 @@ package de.fraunhofer.iem.authchecker.parser;
  * Copyright (c) 2019 Fraunhofer IEM, Paderborn, Germany.
  * 
  ******************************************************************************/
-import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 
 import de.fraunhofer.iem.authchecker.entity.ConfigurationEntity;
 import de.fraunhofer.iem.authchecker.util.LoggerUtil;
 import de.fraunhofer.iem.authchecker.util.MethodUtil;
-import de.fraunhofer.iem.authchecker.util.StringUtil;
 import soot.ArrayType;
 import soot.RefType;
 import soot.SootMethod;
@@ -42,14 +42,14 @@ public class ConfigurationParser extends AbstractStmtSwitch {
 
   private static final String STRING_CLASS = "java.lang.String";
 
-  private ArrayList<ConfigurationEntity> patternEntities;
+  private List<ConfigurationEntity> patternEntities;
 
   private ConfigurationParserState actState;
 
   private ConfigurationEntity lastPatternEnt;
 
-  public ConfigurationParser() {
-    this.patternEntities = new ArrayList<ConfigurationEntity>();
+  public ConfigurationParser(List<ConfigurationEntity> patternEntities) {
+    this.patternEntities = patternEntities;
     this.actState = ConfigurationParserState.START;
   }
 
@@ -183,7 +183,7 @@ public class ConfigurationParser extends AbstractStmtSwitch {
     this.actState = ConfigurationParserState.FOUND_AUTH_REQ;
   }
 
-  public ArrayList<ConfigurationEntity> getPatternEntities() {
+  public List<ConfigurationEntity> getPatternEntities() {
     return patternEntities;
   }
 }
