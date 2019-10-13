@@ -4,6 +4,7 @@ package de.fraunhofer.iem.authchecker.analysis;
  * 
  ******************************************************************************/
 import java.util.List;
+import java.util.Map;
 
 import de.fraunhofer.iem.authchecker.util.SootAlgorithm;
 
@@ -28,11 +29,13 @@ public class CweConfiguration extends Configuration {
   private String configurationMethod;
 
   private SootAlgorithm sootAlgorithm;
+  
+  private Map<String, List<String>> groupPermissions;
 
   public CweConfiguration(String programDirectory, String inputModelPath, String applicationPackage,
       String controllerPackage, String jceJarPath, String rtJarPath, String mainClass,
       String configurationClass, String configurationMethod, List<String> controllerClasses,
-      SootAlgorithm sootAlgorithm) {
+      Map<String, List<String>> groupPermissions, SootAlgorithm sootAlgorithm) {
     super(programDirectory);
     this.inputModelPath = inputModelPath;
     this.applicationPackage = applicationPackage;
@@ -43,6 +46,7 @@ public class CweConfiguration extends Configuration {
     this.configurationClass = configurationClass;
     this.configurationMethod = configurationMethod;
     this.controllerClasses = controllerClasses;
+    this.groupPermissions = groupPermissions;
     this.sootAlgorithm = sootAlgorithm;
   }
 
@@ -124,5 +128,13 @@ public class CweConfiguration extends Configuration {
 
   public void setSootAlgorithm(SootAlgorithm sootCallGraphAlgorithm) {
     this.sootAlgorithm = sootCallGraphAlgorithm;
+  }
+  
+  public void setGroupPermissions(Map<String, List<String>> groupPermissions) {
+	this.groupPermissions = groupPermissions;
+  }
+  
+  public Map<String, List<String>> getGroupPermissions(){
+	  return this.groupPermissions;
   }
 }

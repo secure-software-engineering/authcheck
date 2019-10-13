@@ -55,7 +55,7 @@ public class AnnotationParser {
 			annotationEntity.setHttpMethod(methodInfo.getHttpMethod());
 			annotationEntity.setPattern(methodInfo.getPattern());
 			this.annotations.add(annotationEntity);
-			LOGGER.info("Added annotation Method:" + annotationEntity);
+			LOGGER.info("Added annotation " + annotationEntity);
 		}
 		
 		//Method-level security annotations, if supplied, will always override

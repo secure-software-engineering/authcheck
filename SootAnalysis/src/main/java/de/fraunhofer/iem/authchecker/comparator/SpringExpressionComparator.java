@@ -4,6 +4,7 @@ package de.fraunhofer.iem.authchecker.comparator;
  * 
  ******************************************************************************/
 import java.util.List;
+import java.util.Map;
 
 import de.fraunhofer.iem.authchecker.entity.TruthTableEntity;
 import de.fraunhofer.iem.authchecker.interpreter.AuthorizationEvaluationContext;
@@ -14,7 +15,7 @@ public class SpringExpressionComparator implements ExpressionComparator {
 
   private TruthTableEntity truthTable;
 
-  public SpringExpressionComparator(List<String> relevantGroups) {
+  public SpringExpressionComparator(Map<String, List<String>> relevantGroups) {
     this.truthTable = new TruthTableEntity(relevantGroups);
   }
 

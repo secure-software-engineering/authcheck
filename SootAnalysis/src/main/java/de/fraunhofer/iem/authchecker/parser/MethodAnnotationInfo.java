@@ -6,7 +6,7 @@ public class MethodAnnotationInfo extends AnnotationInfoBase {
 	
 	@Override
 	public boolean isMappingAnnotated() {
-		return super.hasMappingAnnotation || classAnnotInfo.hasMappingAnnotation;
+		return super.hasMappingAnnotation;
 	}
 	
 	@Override

@@ -4,5 +4,5 @@ package de.fraunhofer.iem.authchecker.parser;
  * 
  ******************************************************************************/
 public enum ConfigurationParserState {
-  START, FOUND_AUTH_REQ, HTTP_METHOD, PATTERN, ANT_MATCHERS
+  START, FOUND_AUTH_REQ, HTTP_METHOD, PATTERN, ANT_MATCHERS, ANY_REQUEST
 }

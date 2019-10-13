@@ -4,8 +4,11 @@ package de.fraunhofer.iem.authchecker.statemachine;
  * 
  ******************************************************************************/
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import de.fraunhofer.iem.authchecker.analysis.CweConfiguration;
 import de.fraunhofer.iem.authchecker.comparator.SpringExpressionComparator;
 import de.fraunhofer.iem.authchecker.entity.CallGraphNodeEntity;
 import de.fraunhofer.iem.authchecker.entity.InputModelEntity;
@@ -14,6 +17,8 @@ import de.fraunhofer.iem.authchecker.model.InputModel;
 
 public class StateMachineRunner {
 
+  private CweConfiguration config;
+	
   private InputModel inputModel;
 
   private StateMachine stateMachine;
@@ -22,10 +27,11 @@ public class StateMachineRunner {
 
   private String currentAuthorizationExpression = "";
 
-  public StateMachineRunner(StateMachine stateMachine, InputModel inputModel) {
-    this.currentState = null;
+  public StateMachineRunner(StateMachine stateMachine, CweConfiguration config, InputModel inputModel) {
+	this.config = config;
+	this.inputModel = inputModel;
+	this.currentState = null;
     this.stateMachine = stateMachine;
-    this.inputModel = inputModel;
   }
 
   public void flow(CallGraphNodeEntity callGraphNodeEntity) throws RuntimeException, CweViolationException {
@@ -111,13 +117,27 @@ public class StateMachineRunner {
     }
   }
 
-  private List<String> calculateRelevantGroups(String exp1, String exp2) {
-    List<String> relevantGroups = new ArrayList<String>();
-    for (String group : this.inputModel.getGroups()) {
-      if (exp1 != null && exp2 != null && (exp1.contains(group) || exp2.contains(group))) {
-        relevantGroups.add(group);
-      }
-    }
-    return relevantGroups;
+  //TODO: The old way of computing relevant groups can be buggy in a few 
+  // instances, as it checks for containment in a string. Change this to
+  // parse the expressions and extract the exact permissions/roles from them
+  // and perform a check against them.
+  
+  private Map<String, List<String>> calculateRelevantGroups(String exp1, String exp2) {  
+	  Map<String, List<String>> relevantGroups = new HashMap<String, List<String>> ();
+	  if (exp1 != null && exp2 != null) {
+		  for (String groupKey : this.config.getGroupPermissions().keySet()) {	
+			  if (exp1.contains(groupKey) || exp2.contains(groupKey)) {
+				  relevantGroups.put(groupKey, this.config.getGroupPermissions().get(groupKey));
+			  } else {
+				  for (String permission : this.config.getGroupPermissions().get(groupKey)) {	
+					  if (exp1.contains(permission) || exp2.contains(permission)) {
+						  relevantGroups.put(groupKey, this.config.getGroupPermissions().get(groupKey));
+						  break;
+					  }
+				  }
+			  }
+		  }
+	  }  
+	  return relevantGroups;
   }
 }

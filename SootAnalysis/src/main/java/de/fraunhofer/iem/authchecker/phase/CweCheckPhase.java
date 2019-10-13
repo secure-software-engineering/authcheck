@@ -59,7 +59,7 @@ public class CweCheckPhase extends Phase<CweConfiguration> {
     for (CweEntity cweEntity : this.getCWEArtifact().getCWEs()) {
       LOGGER.info("Checking " + cweEntity.getIdentifier() + " on the path");
       StateMachineRunner runner = new StateMachineRunner(cweEntity.getStateMachine(),
-          this.getInputModel());
+          this.config, this.getInputModel());
       runner.setCurrentAuthorizationExpression(path.getAuthorizationExpression());
 
       int pathIndex = 0;
