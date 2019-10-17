@@ -8,6 +8,7 @@ The input model files list all the method which mapped onto some path, with or w
 ## Controllers and their permissions 
 
 Following is the list of the 22 controllers and their permissions in the project, in lexicographical order.
+
 |    Controller  |	Groups           	 |    Permissions              |
 |----------------|-------------------------------|-----------------------------|
 |AdminController|ROLE_ADMIN|PERM_ADMINISTRATION, PERM_SHOW_ACTIVE_USERS, PERM_SHOW_LAST_LOGINS |
@@ -38,9 +39,10 @@ Following is the list of the 22 controllers and their permissions in the project
 ## Group/Permission schema
 
 Following is the Group/Permission schema in the **FredBet** project.
+
 |    Group       |    Permissions              |
 |----------------|----------------------------|
-|ROLE_USER||
+|ROLE_USER| |
 |ROLE_USER_ENTER_RESULTS|PERM_EDIT_MATCH_RESULT|
 |ROLE_SUB_ADMIN|PERM_EDIT_MATCH,<br> PERM_EDIT_MATCH_RESULT,<br> PERM_CREATE_USER,<br> PERM_USER_ADMINISTRATION,<br> PERM_PASSWORD_RESET,<br> PERM_EDIT_USER,<br> PERM_EDIT_INFOS_RULES,<br> PERM_EDIT_INFOS_PRICES |
 |ROLE_ADMIN|PERM_CREATE_MATCH,<br> PERM_EDIT_MATCH,<br> PERM_EDIT_MATCH_RESULT,<br> PERM_DELETE_MATCH,<br> PERM_CREATE_USER,<br> PERM_EDIT_USER,<br> PERM_DELETE_USER,<br> PERM_PASSWORD_RESET,<br> PERM_USER_ADMINISTRATION,<br> PERM_SYSTEM_INFO,<br> PERM_ADMINISTRATION,<br> PERM_CHANGE_USER_ROLE,<br> PERM_EDIT_INFOS_RULES,<br> PERM_EDIT_INFOS_PRICES,<br> PERM_SHOW_ACTIVE_USERS,<br> PERM_SHOW_LAST_LOGINS,<br> PERM_EDIT_IMAGE_GROUP,<br> PERM_DOWNLOAD_IMAGES,<br> PERM_DELETE_ALL_IMAGES
@@ -51,7 +53,7 @@ Following is the Group/Permission schema in the **FredBet** project.
 There is also *ZYX* folder which contains the configuration files and inaccurate input models for introducing CWE 862 and CWE 863, each in two controllers. They as aforementioned, do not need to be separate files and can be merged easily into two files, if it is desired. The CWEs and their controllers are listed below.
 
 |    CWE Type       |    Controller              |
-|----------------|----------------------------|
+|-------------------|----------------------------|
 |CWE 862|PointsFrequencyController,<br> UserProfileContoller|
 |CWE 863|AdminController,<br> ImageGroupController|
 
