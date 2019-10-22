@@ -34,7 +34,6 @@ Following is the list of the 22 controllers and their permissions in the project
 |UserController|*Ambigious*|PERM_EDIT_USER,<br> PERM_DELETE_USER,<br> PERM_CREATE_USER, <br>PERM_PASSWORD_RESET|
 |UserProfileController|||
 
-, and after them the schema of groups and permission is listed.
 
 ## Group/Permission schema
 
