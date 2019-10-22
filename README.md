@@ -8,6 +8,7 @@ Copyright (c) 2019 Secure Software Engineering Group at Paderborn University and
 ## contributors
 * Tobias Petrasch
 * Goran Piskachev 
+* Abdul Rehman Tareen
 * Johannes Späth
 * Eric Bodden
 
