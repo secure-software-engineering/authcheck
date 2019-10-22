@@ -1,7 +1,7 @@
 # Evaluation with FredBet!
 This guide details analysing the **[FredBet](https://github.com/fred4jupiter/fredbet)** project version 2.2.1 by AuthCheck. 
 
-In the folder *XYZ*, there is a main configuration and an input model file, developed for each of the 22 controller's analysis, present in the **FredBet** project. Although, there is no need for having separate files for each of the controller, but they help in analyzing, evaluating and experimenting with each controller separately. However, the configurations and input model files could be merged easily, if it is desired. 
+In the folder *XYZ*, there is a main configuration and an input model file, developed for each of the 22 controller's analysis, present in the **FredBet** project. Although, there is no need for having separate files for each of the controller, having them separately makes the analysis, evaluation, and experimentation easier. The configurations and input model files could be merged easily, if it is desired. 
 
 The input model files list all the method which mapped onto some path, with or without authorization restrictions in the controllers. 
 
