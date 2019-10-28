@@ -1,9 +1,11 @@
 # Evaluation with FredBet!
 This guide details analysing the **[FredBet](https://github.com/fred4jupiter/fredbet)** project version 2.2.1 by AuthCheck. 
 
-In the folder *XYZ*, there is a main configuration and an input model file, developed for each of the 22 controller's analysis, present in the **FredBet** project. Although, there is no need for having separate files for each of the controller, having them separately makes the analysis, evaluation, and experimentation easier. The configurations and input model files could be merged easily, if it is desired. 
+In the folder *fredbet-conf*, there is a main configuration and an input model file, developed for each of the 22 controller's analysis, present in the **FredBet** project. Although, there is no need for having separate files for each of the controller, having them separately makes the analysis, evaluation, and experimentation easier. The configurations and input model files could be merged easily, if it is desired. 
 
-The input model files list all the method which mapped onto some path, with or without authorization restrictions in the controllers. 
+The input model files list all the method which are mapped onto some path, with or without authorization restrictions in the controllers.
+
+Some of the controllers are encountered first/earlier than others while exploring the **FredBet** application's site. That's why the in the following table a number of controllers have no specific authorization specified for them.
 
 ## Controllers and their permissions 
 
@@ -34,10 +36,14 @@ Following is the list of the 22 controllers and their permissions in the project
 |UserController|*Ambigious*|PERM_EDIT_USER,<br> PERM_DELETE_USER,<br> PERM_CREATE_USER, <br>PERM_PASSWORD_RESET|
 |UserProfileController|||
 
+**Legend:**
+- Blank space: No authorization specified on any of the method(s) in the controller.
+- *Ambigious*: There is at least one permission specified in the controller which belongs to multiple groups.
 
+In the **FredBet** project, there is Group/Permission style of authorization model used. Its specification is given below.
 ## Group/Permission schema
 
-Following is the Group/Permission schema in the **FredBet** project.
+Following is the Group/Permission schema as specified in the **FredBet** project's *application.yml* file.
 
 |    Group       |    Permissions              |
 |----------------|----------------------------|
@@ -48,7 +54,7 @@ Following is the Group/Permission schema in the **FredBet** project.
 
 ## Input models introducing CWEs
 
-There is also *ZYX* folder which contains the configuration files and inaccurate input models for introducing CWE 862 and CWE 863, each in two controllers. They as aforementioned, do not need to be separate files and can be merged easily into two files, if it is desired. The CWEs and their controllers are listed below.
+There is also *fredbet-conf-with-cwes* folder which contains the configuration files and inaccurate input models for introducing CWE 862 and CWE 863, each in two controllers. They as aforementioned, do not need to be separate files and can be merged easily into two files, if it is desired. The CWEs and their controllers are listed below.
 
 |    CWE Type       |    Controller              |
 |-------------------|----------------------------|
