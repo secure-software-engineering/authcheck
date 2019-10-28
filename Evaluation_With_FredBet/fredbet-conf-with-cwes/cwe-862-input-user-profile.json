@@ -1,0 +1,30 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.profile.UserProfileController: java.lang.String changePassword(de.fred4jupiter.fredbet.web.profile.ChangePasswordCommand, org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.profile.UserProfileController: java.lang.String changePasswordPost(de.fred4jupiter.fredbet.web.profile.ChangePasswordCommand, BindingResult bindingResult, RedirectAttributes redirect, java.lang.Long,org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.profile.UserProfileController: java.lang.String changeUsername(de.fred4jupiter.fredbet.web.profile.ChangeUsernameCommand)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    }
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.profile.UserProfileController: java.lang.String changeUsernamePost(de.fred4jupiter.fredbet.web.profile.ChangeUsernameCommand, org.springframework.validation.BindingResult,org.springframework.web.servlet.mvc.support.RedirectAttributes, java.lang.Long,org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+  ]
+}
+
+
+
+
+
+
+
+
+   
+    

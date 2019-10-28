@@ -1,0 +1,28 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchController: java.lang.String listAllMatches(org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchController: java.lang.String upcomingMatches(org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchController: java.lang.String listByGroup(java.lang.String,org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchController: java.lang.String jokerMatches(org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchController: java.lang.String matchesOfToday(org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchController: java.lang.String finishedMatchesWithoutResult(org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    }    
+  ]
+}

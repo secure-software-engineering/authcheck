@@ -126,10 +126,22 @@ public class StateMachineRunner {
 	  Map<String, List<String>> relevantGroups = new HashMap<String, List<String>> ();
 	  if (exp1 != null && exp2 != null) {
 		  for (String groupKey : this.config.getGroupPermissions().keySet()) {	
-			  if (exp1.contains(groupKey) || exp2.contains(groupKey)) {
+			  
+			  String groupKeyTemp = groupKey;
+			  
+			  if(groupKey.contains("ROLE_")) {
+				  groupKeyTemp = groupKey.replace("ROLE_", "");  
+			  }
+			  
+			  if (exp1.contains(groupKeyTemp) || exp2.contains(groupKeyTemp)) {
 				  relevantGroups.put(groupKey, this.config.getGroupPermissions().get(groupKey));
 			  } else {
 				  for (String permission : this.config.getGroupPermissions().get(groupKey)) {	
+					 					  
+					  if (permission.contains("ROLE_")) {
+						  permission = permission.replace("ROLE_", "");  
+					  }
+					  
 					  if (exp1.contains(permission) || exp2.contains(permission)) {
 						  relevantGroups.put(groupKey, this.config.getGroupPermissions().get(groupKey));
 						  break;

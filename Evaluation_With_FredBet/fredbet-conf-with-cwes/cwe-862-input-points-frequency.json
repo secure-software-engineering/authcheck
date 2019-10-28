@@ -1,0 +1,8 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.PointsFrequencyController: java.lang.String show(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    }
+  ]
+}

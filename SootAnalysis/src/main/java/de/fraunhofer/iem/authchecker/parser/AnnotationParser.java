@@ -25,12 +25,10 @@ public class AnnotationParser {
 
   protected static final Logger LOGGER = LoggerUtil.getLogger();
   
-  private List<AnnotationEntity> annotations;
-  private List<ConfigurationEntity> patternEntities;
+  private EntityStore parsedEntities;
   
-  public AnnotationParser(List<ConfigurationEntity> patternEntities) {
-	  this.annotations = new ArrayList<AnnotationEntity>();
-	  this.patternEntities = patternEntities;
+  public AnnotationParser(EntityStore parsedEntities) {
+	  this.parsedEntities = parsedEntities;
   }
   
   public void parseAnnotation(SootMethod method, List<Tag> classAnnotations) {
@@ -54,7 +52,7 @@ public class AnnotationParser {
 			annotationEntity.setMethodName(MethodUtil.generateMethodName(method));
 			annotationEntity.setHttpMethod(methodInfo.getHttpMethod());
 			annotationEntity.setPattern(methodInfo.getPattern());
-			this.annotations.add(annotationEntity);
+			this.parsedEntities.addAnnotation(annotationEntity);
 			LOGGER.info("Added annotation " + annotationEntity);
 		}
 		
@@ -67,7 +65,7 @@ public class AnnotationParser {
 			String pattern = methodInfo.isAuthAnnotated() ? 
 					methodInfo.getAuthPattern() : methodInfo.getClassAuthPattern();
 			confEntity.appendAuthorizationExpression(pattern);		
-			this.patternEntities.add(confEntity);
+			this.parsedEntities.addPattern(confEntity);
 			LOGGER.info("Added pattern entity" + confEntity);
 		}		
   }
@@ -192,6 +190,6 @@ public class AnnotationParser {
   }
 
   public List<AnnotationEntity> getAnnotations() {
-    return annotations;
+    return this.parsedEntities.getAnnotations();
   }
 }

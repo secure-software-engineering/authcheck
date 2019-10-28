@@ -1,8 +1,4 @@
 {
-  "authorizationGroups": [
-    "USER",
-    "ADMIN"
-  ],
   "criticalMethods": [
     {
       "methodSignature": "<com.example.demo.controller.TodoController: com.example.demo.entity.Todo delete(java.lang.Long)>",

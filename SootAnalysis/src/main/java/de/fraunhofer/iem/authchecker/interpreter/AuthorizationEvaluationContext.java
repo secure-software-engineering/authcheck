@@ -1,6 +1,4 @@
 package de.fraunhofer.iem.authchecker.interpreter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 /*******************************************************************************
  * Copyright (c) 2019 Fraunhofer IEM, Paderborn, Germany.

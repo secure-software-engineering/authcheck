@@ -1,0 +1,8 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.PointsFrequencyController: java.lang.String show(java.lang.Long,org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    }
+  ]
+}

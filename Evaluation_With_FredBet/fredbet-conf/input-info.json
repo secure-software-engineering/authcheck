@@ -1,0 +1,45 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: org.springframework.web.servlet.ModelAndView showRules()>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: org.springframework.web.servlet.ModelAndView showPrices()>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: org.springframework.web.servlet.ModelAndView showMiscellaneous()>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: org.springframework.web.servlet.ModelAndView editInfoRules()>",
+      "authorizationExpression" : "hasAuthority('PERM_EDIT_INFOS_RULES')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: org.springframework.web.servlet.ModelAndView editInfoPrices()>",
+      "authorizationExpression" : "hasAuthority('PERM_EDIT_INFOS_PRICES')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: org.springframework.web.servlet.ModelAndView editInfoMisc()>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: java.lang.String saveEditedInfoMisc(de.fred4jupiter.fredbet.web.info.InfoCommand)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.info.InfoController: java.lang.String showStatistics(org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    }   
+  ]
+}
+
+
+
+
+
+
+
+
+

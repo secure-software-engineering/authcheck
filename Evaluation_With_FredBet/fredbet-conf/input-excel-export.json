@@ -1,0 +1,38 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelExportController: java.lang.String showCachePage()>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelExportController: org.springframework.http.ResponseEntity exportAllBets()>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelExportController: org.springframework.http.ResponseEntity exportExtraBets()>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelExportController: org.springframework.http.ResponseEntity exportPointsCountByUser() >",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelExportController: org.springframework.http.ResponseEntity exportRanking()>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelExportController: org.springframework.http.ResponseEntity createResponseEntity(java.lang.String,byte[])>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+

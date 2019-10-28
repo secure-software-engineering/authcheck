@@ -1,0 +1,36 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.AdminController:java.lang.String createRandomMatches(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.AdminController:java.lang.String createDemoBets(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.AdminController:java.lang.String createDemoResults(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.AdminController:java.lang.String deleteAllBetsAndMatches(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.AdminController:java.lang.String showActiveUsers(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.AdminController: java.lang.String showLastLogins(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_SHOW_LAST_LOGINS')"
+    },
+  ]
+}
+
+
+
+
+
+
+
+

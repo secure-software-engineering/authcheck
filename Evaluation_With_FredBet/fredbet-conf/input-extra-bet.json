@@ -1,0 +1,20 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.bet.ExtraBetController: java.lang.String showExtraBets(org.springframework.ui.Model) >",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.bet.ExtraBetController: java.lang.String saveExtraBets(de.fred4jupiter.fredbet.web.bet.ExtraBetCommand,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.bet.ExtraBetController: org.springframework.web.servlet.ModelAndView showExtraBetResults()>",
+      "authorizationExpression" : null
+    },
+  ]
+}
+
+
+
+

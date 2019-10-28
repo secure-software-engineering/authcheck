@@ -1,0 +1,32 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.user.UserController: java.lang.String list(java.lang.Long,org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.user.UserController: java.lang.String edit(java.lang.Long,org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.user.UserController: java.lang.String edit(de.fred4jupiter.fredbet.web.user.EditUserCommand,org.springframework.validation.BindingResult,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_EDIT_USER')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.user.UserController: java.lang.String delete(java.lang.Long, org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_DELETE_USER')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.user.UserController: java.Lang.String create(org.springframework.ui.Model)>", 
+      "authorizationExpression" : "hasAuthority('PERM_CREATE_USER')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.user.UserController: java.Lang.String create(de.fred4jupiter.fredbet.web.user.CreateUserCommand,  org.springframework.web.servlet.mvc.support.RedirectAttributes, org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_CREATE_USER')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.user.UserController: com.example.demo.entity.Todo resetPassword(java.lang.Long,  org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_PASSWORD_RESET')"
+    }
+  ]
+}

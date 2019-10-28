@@ -1,0 +1,13 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.profile.ImageCroppingController: java.lang.String show()>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.profile.ImageCroppingController: java.lang.String uploadImage(java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : null
+    },
+  ]
+}
+

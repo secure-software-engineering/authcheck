@@ -17,6 +17,7 @@ import de.fraunhofer.iem.authchecker.entity.ConfigurationEntity;
 import de.fraunhofer.iem.authchecker.model.InputModel;
 import de.fraunhofer.iem.authchecker.parser.AnnotationParser;
 import de.fraunhofer.iem.authchecker.parser.ConfigurationParser;
+import de.fraunhofer.iem.authchecker.parser.EntityStore;
 import de.fraunhofer.iem.authchecker.transformer.AnnotationParserTransformer;
 import de.fraunhofer.iem.authchecker.transformer.CallGraphConstructionTransformer;
 import de.fraunhofer.iem.authchecker.transformer.ConfigurationParserTransformer;
@@ -30,15 +31,17 @@ public class CallGraphConstructionPhase extends Phase<CweConfiguration> {
 
   private AnnotationParser annotationParser;
   private ConfigurationParser configurationParser;
-
+  
   public CallGraphConstructionPhase(CweConfiguration config,
       Artifact... phaseArtifacts) {
     super(config, "callGraphConstruction", phaseArtifacts);
     
-    // Common data-structure for storing pattern entities. 
-    List<ConfigurationEntity> patterns = new ArrayList<ConfigurationEntity>(); 
-    this.annotationParser = new AnnotationParser(patterns);
-    this.configurationParser = new ConfigurationParser(patterns);
+    EntityStore entityStore = new EntityStore(
+    		new ArrayList<AnnotationEntity>(),
+    		new ArrayList<ConfigurationEntity>());
+    
+    this.annotationParser = new AnnotationParser(entityStore);
+    this.configurationParser = new ConfigurationParser(entityStore);
   }
 
   public void run() {
@@ -92,16 +95,10 @@ public class CallGraphConstructionPhase extends Phase<CweConfiguration> {
   private void runSootTransformers() {
     CallGraphConstructionTransformer cgTrans = new CallGraphConstructionTransformer(
         this.getInputModel(), this.config.getApplicationPackage());
-    PackManager.v().getPack("wjtp").add(new Transform("wjtp.callGraphConstruction", cgTrans));
-
-    ConfigurationParserTransformer configParserTrans = new ConfigurationParserTransformer(
-        this.configurationParser,
-        this.config.getConfigurationMethod(),
-        this.config.getConfigurationClass()
-    );
-
-    PackManager.v().getPack("jtp").add(new Transform("jtp.configurationParser", configParserTrans));
-
+    
+    PackManager.v().getPack("wjtp")
+    	.add(new Transform("wjtp.callGraphConstruction", cgTrans));
+    
     AnnotationParserTransformer annotationParserTrans = new AnnotationParserTransformer(
         this.annotationParser,
         this.config.getControllerPackage()
@@ -109,7 +106,16 @@ public class CallGraphConstructionPhase extends Phase<CweConfiguration> {
 
     PackManager.v().getPack("jtp")
         .add(new Transform("jtp.annotationParser", annotationParserTrans));
+    
+    ConfigurationParserTransformer configParserTrans = new ConfigurationParserTransformer(
+            this.configurationParser,
+            this.config.getConfigurationMethod(),
+            this.config.getConfigurationClass()
+        );
 
+    PackManager.v().getPack("jtp")
+    	.add(new Transform("jtp.configurationParser", configParserTrans));
+    
     List<String> argsList = new ArrayList<String>();
     argsList.add(this.config.getMainClass());
     argsList.add(this.config.getConfigurationClass());

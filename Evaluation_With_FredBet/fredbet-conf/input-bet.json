@@ -1,0 +1,33 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.bet.BetController: java.lang.String listStillOpen(org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.bet.BetController: java.lang.String showBet(java.lang.Long,java.lang.String,org.springframework.ui.Model)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.bet.BetController: java.lang.String saveBet(de.fred4jupiter.fredbet.web.bet.BetCommand,org.springframework.validation.BindingResult,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.bet.BetController: org.springframework.web.servlet.ModelAndView findBetsOfAllUsersByMatchId(java.lang.Long,java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes.RedirectAttributes)>",
+      "authorizationExpression" : null
+    }
+  ]
+}
+
+
+
+    
+
+
+
+
+
+
+
+
+

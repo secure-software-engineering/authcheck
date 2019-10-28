@@ -1,4 +1,5 @@
 package de.fraunhofer.iem.authchecker.parser;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 
+import de.fraunhofer.iem.authchecker.entity.AnnotationEntity;
 import de.fraunhofer.iem.authchecker.entity.ConfigurationEntity;
 import de.fraunhofer.iem.authchecker.util.LoggerUtil;
 import de.fraunhofer.iem.authchecker.util.MethodUtil;
@@ -52,16 +54,19 @@ public class ConfigurationParser extends AbstractStmtSwitch {
 
   private static final String STRING_CLASS = "java.lang.String";
 
+  private boolean isAllPatternAuth;
+  
   private ConfigurationParserState actState;
   private ConfigurationEntity lastPatternEnt;
-
-  private List<ConfigurationEntity> patternEntities;
+  private EntityStore parsedEntities;
+  
   private HashMap<String, List<String>> localVariables;
   
-  public ConfigurationParser(List<ConfigurationEntity> patternEntities) {
+  public ConfigurationParser(EntityStore parsedEntities) {
+	this.parsedEntities = parsedEntities;
     this.localVariables = new HashMap<String, List<String>>();
-	this.patternEntities = patternEntities;
-    this.actState = ConfigurationParserState.START;
+	this.isAllPatternAuth = false;
+	this.actState = ConfigurationParserState.START;
   }
 
   @Override
@@ -103,6 +108,35 @@ public class ConfigurationParser extends AbstractStmtSwitch {
     }
   }
 
+  private void finishUpParsing() {
+	  
+	  // No need for thread safety in here.
+	  if (isAllPatternAuth) {
+		 
+		  List<ConfigurationEntity> allPatterns = new ArrayList<ConfigurationEntity>();
+		  
+		  for (AnnotationEntity annotEntity : parsedEntities.getAnnotations()) {
+			ConfigurationEntity newEntity = new ConfigurationEntity(annotEntity.getHttpMethod());
+			newEntity.addPattern(annotEntity.getPattern());
+			allPatterns.add(newEntity);
+			
+			LOGGER.info("Added pattern entity " + newEntity);
+		  }
+		  
+		  for (ConfigurationEntity patternEntity : parsedEntities.getPatterns()) {
+	    	 ConfigurationEntity newEntity = new ConfigurationEntity(patternEntity.getHttpMethod());
+	    	 newEntity.addPatterns(patternEntity.getPatterns());
+	    	 allPatterns.add(newEntity);
+	    	 
+	    	 LOGGER.info("Added pattern entity " + newEntity);
+		 }
+		
+		 parsedEntities.getPatterns().addAll(0, allPatterns);
+	  }
+	  
+	  isAllPatternAuth = false;
+  }
+  
   private void caseStart(Stmt stmt) {
     if (stmt.containsInvokeExpr()) {
       SootMethod method = stmt.getInvokeExpr().getMethod();
@@ -215,11 +249,13 @@ public class ConfigurationParser extends AbstractStmtSwitch {
   private void caseAnyRequest(Stmt stmt) {
 	  if (stmt.containsInvokeExpr()) {
 	      SootMethod method = stmt.getInvokeExpr().getMethod();
+	      
 	      if (MethodUtil
 	          .matchClassAndMethod(method, ANT_AUTHORIZATION_CLASS, ANT_AUTHENTICATED_METHOD)) {
-	    	lastPatternEnt = new ConfigurationEntity(null);
-	    	lastPatternEnt.addPattern("/");
-	    	caseAntMatchersAuthenticate();
+	    	
+	    	  this.actState = ConfigurationParserState.FOUND_AUTH_REQ;
+	    	isAllPatternAuth = true;
+	    	
 	      } else if (MethodUtil
 	          .matchClassAndMethod(method, ANT_AUTHORIZATION_CLASS, ANT_PERMIT_ALL_METHOD)) {
 	        caseAntMatchersPermitAll();
@@ -245,7 +281,7 @@ public class ConfigurationParser extends AbstractStmtSwitch {
 		authExpression += ")";
 	}	
 	this.lastPatternEnt.appendAuthorizationExpression(authExpression);
-    this.patternEntities.add(lastPatternEnt);
+    this.parsedEntities.addPattern(lastPatternEnt);
     this.actState = ConfigurationParserState.FOUND_AUTH_REQ;
     LOGGER.info("Added pattern entity " + lastPatternEnt);
   }
@@ -253,13 +289,13 @@ public class ConfigurationParser extends AbstractStmtSwitch {
   private void caseAntMatchersAccess(Stmt stmt) {
     StringConstant authExpression = (StringConstant) stmt.getInvokeExpr().getArg(0);
     this.lastPatternEnt.appendAuthorizationExpression(authExpression.value);
-    this.patternEntities.add(lastPatternEnt);
+    this.parsedEntities.addPattern(lastPatternEnt);
     this.actState = ConfigurationParserState.FOUND_AUTH_REQ;
     LOGGER.info("Added pattern entity " + lastPatternEnt);
   }
 
   private void caseAntMatchersAuthenticate() {
-    this.patternEntities.add(lastPatternEnt);
+	this.parsedEntities.addPattern(lastPatternEnt);
     this.actState = ConfigurationParserState.FOUND_AUTH_REQ;
     LOGGER.info("Added pattern entity " + lastPatternEnt);
   }
@@ -270,6 +306,7 @@ public class ConfigurationParser extends AbstractStmtSwitch {
   }
 
   public List<ConfigurationEntity> getPatternEntities() {
-    return patternEntities;
+    finishUpParsing();
+	return this.parsedEntities.getPatterns();
   }
 }

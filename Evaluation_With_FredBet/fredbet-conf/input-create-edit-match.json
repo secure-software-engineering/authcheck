@@ -1,0 +1,24 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.CreateEditMatchController: java.lang.String create(org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_CREATE_MATCH')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.CreateEditMatchController: java.lang.String edit(java.lang.Long,org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_EDIT_MATCH')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.CreateEditMatchController: java.lang.String save(de.fred4jupiter.fredbet.web.matches.CreateEditMatchCommand,org.springframework.validation.BindingResult,org.springframework.web.servlet.mvc.support.RedirectAttributes,org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_EDIT_MATCH')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.CreateEditMatchController: java.lang.String delete(java.lang.Long,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_DELETE_MATCH')"
+    },
+  ]
+}
+
+
+
+

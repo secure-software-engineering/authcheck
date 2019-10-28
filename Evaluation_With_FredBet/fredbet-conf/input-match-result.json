@@ -1,0 +1,13 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchResultController: java.lang.String edit(java.lang.Long, java.lang.String, org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_EDIT_MATCH_RESULT')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.matches.MatchResultController: java.lang.String save(de.fred4jupiter.fredbet.web.matches.MatchResultCommand,org.springframework.validation.BindingResult,org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_EDIT_MATCH_RESULT')"
+    }
+  ]
+}
+    

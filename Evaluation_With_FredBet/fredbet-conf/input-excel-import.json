@@ -1,0 +1,16 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelImportController: java.lang.String showUploadPage()>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelImportController: org.springframework.http.ResponseEntity<byte[]> downloadTemplate()>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.ExcelImportController: java.lang.String uploadExcelFile(de.fred4jupiter.fredbet.web.admin.ExcelUploadCommand,org.springframework.validation.BindingResult,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    }
+  ]
+}

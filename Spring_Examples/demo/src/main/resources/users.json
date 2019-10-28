@@ -3,14 +3,14 @@
         "username" : "admin",
         "password" : "password",
         "authorities" : [
-            "ADMIN"
+            "ROLE_ADMIN"
         ]
     },
     {
         "username" : "user",
         "password" : "password",
         "authorities" : [
-            "USER"
+            "ROLE_USER"
         ]
     }
 ]

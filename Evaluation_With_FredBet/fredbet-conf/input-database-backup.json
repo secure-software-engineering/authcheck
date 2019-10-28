@@ -1,0 +1,21 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.DatabaseBackupController: java.lang.String showPage(de.fred4jupiter.fredbet.web.admin.DatabaseBackupCommand,org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.DatabaseBackupController: java.lang.String executeBackup(org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.DatabaseBackupController: java.lang.String saveBackupSettings(de.fred4jupiter.fredbet.web.admin.DatabaseBackupCommand,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    }
+  ]
+}
+
+
+
+
+

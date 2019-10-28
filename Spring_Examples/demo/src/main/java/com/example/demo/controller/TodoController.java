@@ -6,7 +6,6 @@ package com.example.demo.controller;
  ******************************************************************************/
 
 import com.example.demo.entity.Todo;
-import com.example.demo.exception.TodoValidationFailedException;
 import com.example.demo.service.TodoService;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.PathVariable;

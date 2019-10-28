@@ -1,0 +1,12 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.RuntimeConfigurationController: java.lang.String showCachePage(de.fred4jupiter.fredbet.web.admin.RuntimeConfigCommand, java.lang.Long,org.springframework.ui.Model)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.admin.RuntimeConfigurationController: java.lang.String saveRuntimeConfig(de.fred4jupiter.fredbet.web.admin.RuntimeConfigCommand, org.springframework.validation.BindingResult, org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : "hasAuthority('PERM_ADMINISTRATION')"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "criticalMethods": [
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.image.ImageUploadController: java.lang.String showUploadPage()>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.image.ImageUploadController: java.lang.String uploadImage(de.fred4jupiter.fredbet.web.image.ImageUploadCommand,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : null
+    },
+    {
+      "methodSignature": "<de.fred4jupiter.fredbet.web.image.ImageUploadController: java.lang.String deleteImage(java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes)>",
+      "authorizationExpression" : null
+    }
+  ]
+}
+   
+    
+
