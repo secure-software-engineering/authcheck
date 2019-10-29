@@ -71,8 +71,5 @@ The changes made in the input models of the controllers (peresent in XYZ) for ea
   + AdminController: Changed the "authorizationExpression" :  "hasAuthority('PERM_SHOW_LAST_LOGINS')" to "hasAuthority('PERM_ADMINISTRATION')" of showLastLogins(...) method in its input model.
   + ImageGroupController: Changed the "authorizationExpression" : "hasAuthority('PERM_EDIT_IMAGE_GROUP')" to "hasAuthority('PERM_ADMINISTRATION')" of show() and deleteImage() methods in its input model.
 
-
-
-
-
-
+*Note*:  
+In order to introduce CWE-306, removed the line # 61 (version 2.2.1) in the WebSecurityConfig.cs ('http.authorizeRequests().anyRequest().authenticated();') of the application. It stops authenticating all the requests to the application and results in CWE-306 when any controller is analyzed.
