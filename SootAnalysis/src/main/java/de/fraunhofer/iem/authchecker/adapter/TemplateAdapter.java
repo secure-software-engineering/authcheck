@@ -1,4 +1,5 @@
 package de.fraunhofer.iem.authchecker.adapter;
+import java.io.File;
 /*******************************************************************************
  * Copyright (c) 2019 Fraunhofer IEM, Paderborn, Germany.
  * 
@@ -21,6 +22,15 @@ public class TemplateAdapter {
     ve.init();
 
     Template t = ve.getTemplate("./report.vm");
+    
+    File directory = new File("./report");
+    
+    if (!directory.exists()) {
+    	if(!directory.mkdir()) {
+    		throw new IOException("Can not create directory for the report.");
+    	}
+    }
+    
     PrintWriter writer = new PrintWriter("./report/report.html");
 
     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.GERMANY);
