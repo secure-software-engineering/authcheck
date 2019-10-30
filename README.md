@@ -29,4 +29,4 @@ Before running the authcheck on MacOS or Linux, the *configuration.json* file ne
 After that, in the contex of *./SootAnalysis* directory, the following command can be used to execute authcheck:  
 ```$ java -cp target/Soot-Analysis-1.0-SNAPSHOT-jar-with-dependencies.jar de.fraunhofer.iem.authchecker.Checker configuration.json```
 
-After the running the successful execution of the above command, the analysis will create the report.html in the *./report* directory, which will contain results and suggestions about the analysis.
+After the successful execution of the above command, the analysis will create the report.html in the *./report* directory, which will contain results and suggestions about the analysis.
