@@ -19,7 +19,7 @@ Contact: Goran Piskachev (goran.piskachev@iem.fraunhofer.de)
 First, compile the AuthCheck's source, use the following Maven command for that in the context of *./SootAnalysis* directory.
 ```$ mvn package```
 
-Then, compile demo/example application by using the following Maven command in the context of *./Spring_Examples/demo* directory. 
+Then, compile demo/example application by using the following Maven command in the context of *./Spring_Examples/demo* directory.  
 ```$ mvn package```
 
 There are two ready-made configuration files *configuration.json* and *input.json* in *./SootAnalysis* directory, which are used for demo analysis of the example application existing in the source. The former file contains various settings for the analysis and the latter contains the input model needed for the analysis.
