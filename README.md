@@ -16,7 +16,7 @@ Contact: Goran Piskachev (goran.piskachev@iem.fraunhofer.de)
 
 # using authcheck in MacOS or Linux 
 
-First, compile the AuthCheck's source, use the following Maven command for that in the context of *./SootAnalysis* directory.
+First, compile the AuthCheck's source, use the following Maven command for that in the context of *./SootAnalysis* directory.  
 ```$ mvn package```
 
 Then, compile demo/example application by using the following Maven command in the context of *./Spring_Examples/demo* directory.  
